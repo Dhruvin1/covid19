@@ -8,6 +8,8 @@ import settings
 infection = 0
 NODE_ELEMENT = range(settings.NODES)
 colors = cm.rainbow(np.linspace(0, 1, settings.NODES))
+# Infected is array of two with white and black
+colors_infected=cm.Greys(np.linspace(0,1,2))
 fig, ax = plt.subplots()
 
 # give random positions to settings.NODES
@@ -15,8 +17,9 @@ for j in range(settings.NODES):
     NODE_ELEMENT[j] = Randomwalk(x=randint(-1*settings.X_LIMIT,settings.X_LIMIT), y=randint(-1*settings.Y_LIMIT,settings.Y_LIMIT))
 
 # Initial infection
-NODE_ELEMENT[0].is_infected = True
-colors[0] = ([0.5,  0.5,  0.5,  0.5])
+for i in range (settings.NODES/10):
+    NODE_ELEMENT[i].is_infected = True
+    colors[i] = colors_infected[1]
 
 # walk each node for iteration specified in WALK_DAYS
 for i in range(settings.WALK_DAYS):
@@ -30,10 +33,10 @@ for i in range(settings.WALK_DAYS):
             indices = [b for b, c in enumerate(current_pos) if c == (NODE_ELEMENT[j].x_values[-1], NODE_ELEMENT[j].y_values[-1]) and c!=j]
             for d in indices:
                 NODE_ELEMENT[d].is_infected = True
-                colors[d] = ([0.5,  0.5,  0.5,  0.5])
+                colors[d] = colors_infected[1]
     for j in range(settings.NODES):
         if settings.VISUALIZATION == True:
-            ax.scatter(NODE_ELEMENT[j].x_values[-1], NODE_ELEMENT[j].y_values[-1], c=colors[j], s=10)
+            ax.scatter(NODE_ELEMENT[j].x_values[-1], NODE_ELEMENT[j].y_values[-1], c=colors[j], s=5)
             plt.pause(0.05)
         #ax.scatter(NODE_ELEMENT[j].x_values,NODE_ELEMENT[j].y_values,c=np.random.rand(3,),s=20)
     # for i in range(len(NODE_ELEMENT[0].x_values)):

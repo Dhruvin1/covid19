@@ -1,1 +1,1 @@
-# covid19
+# Understanding a pandemic spread

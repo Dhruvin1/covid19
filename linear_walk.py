@@ -13,7 +13,9 @@ class Liearwalk():
         self.is_infected = False
         self.x_values = []
         self.y_values = []
+        self.infection = False
         self.infected_days = 0
+        self.dead = False
         self.angle = randint(0,360)
         self.speed = 5
         self.x_values.append(x)

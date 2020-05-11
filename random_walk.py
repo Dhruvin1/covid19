@@ -12,6 +12,8 @@ class Randomwalk():
         self.x_values = []
         self.y_values = []
         self.infected_days = 0
+        self.infection = False
+        self.dead = False
         self.x_values.append(x)
         self.y_values.append(y)
 
